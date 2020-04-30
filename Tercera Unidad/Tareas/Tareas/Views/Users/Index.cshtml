@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Tareas.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <p></p>
+<p>
+    @Html.ActionLink("Nuevo Usuario", "Create",new { },new { @class="btn btn-primary btn-sm "})
+</p>
+<table class="table table-condensed">
+    <tr>
+        <th>Item</th>
+        <th>
+            Nombre Completo
+        </th>
+        <th>
+           Correo Electrónico
+        </th>
+        <th>
+            WhatsApp
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Id</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            <i class="glyphicon glyphicon-envelope"></i> @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            <i class="glyphicon glyphicon-earphone"></i> @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Tasks",new {id=item.Id })"> <i class="glyphicon glyphicon-pencil text-warning"></i></a> |
+            <a href="@Url.Action("Details","Tasks",new {id=item.Id })" class="text-info"><i class="glyphicon glyphicon-eye-open"></i></a> |
+            <a href="@Url.Action("Delete","Tasks",new {id=item.Id })" class="text-danger"> <i class="glyphicon glyphicon-trash"></i></a>
+
+
+        </td>
+    </tr>
+}
+
+</table>
